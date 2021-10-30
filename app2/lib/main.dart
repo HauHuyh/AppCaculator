@@ -164,7 +164,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               clickbtnTime = !clickbtnTime;
                               if (clickbtnTime == true) {
-                                Text(history);
                               } else {
                                 return btnOnClick(textToDisplay);
                               }
