@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_unnecessary_containers, prefer_const_constructors, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Máy Tính 2.0'),
     );
   }
 }
@@ -31,9 +33,63 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double firstNum = 0;
+  double secondNum = 0;
+  String history = "";
+  String textToDisplay = "";
+  String reset = "";
+  String operation = "";
   Color textcolor = Colors.white;
+  bool clickbtnTime = true;
+
+  void btnOnClick(String btnval) {
+    print(btnval);
+
+    if (btnval == "C") {
+      firstNum = 0;
+      secondNum = 0;
+      textToDisplay = " ";
+      reset = " ";
+      history = " ";
+    } else if (btnval == '+' ||
+        btnval == '-' ||
+        btnval == 'x' ||
+        btnval == ':') {
+      firstNum = double.parse(textToDisplay);
+      reset = " ";
+      operation = btnval;
+    } else if (btnval == '=') {
+      secondNum = double.parse(textToDisplay);
+      if (operation == '+') {
+        reset = (firstNum + secondNum).toString();
+        history =
+            (firstNum.toString() + operation.toString() + secondNum.toString());
+      }
+      if (operation == '-') {
+        reset = (firstNum - secondNum).toString();
+        history =
+            (firstNum.toString() + operation.toString() + secondNum.toString());
+      }
+      if (operation == 'x') {
+        reset = (firstNum * secondNum).toString();
+        history =
+            (firstNum.toString() + operation.toString() + secondNum.toString());
+      }
+      if (operation == ':') {
+        reset = (firstNum / secondNum).toString();
+        history =
+            (firstNum.toString() + operation.toString() + secondNum.toString());
+      }
+    } else {
+      reset = double.parse(textToDisplay + btnval).toString();
+    }
+    setState(() {
+      textToDisplay = reset;
+    });
+  }
+
   Widget _OutlineButTon(
-    String value,
+    text,
     Color color,
     textcolor,
   ) {
@@ -42,14 +98,16 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         Row(children: [
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(7),
             child: SizedBox(
               width: 70,
               height: 70,
               child: FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  btnOnClick(text);
+                },
                 color: color,
-                child: Text(value,
+                child: Text(text,
                     style: GoogleFonts.rubik(
                         textStyle: TextStyle(
                       fontSize: 24,
@@ -76,25 +134,77 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.end,
-          // _OutlineButTon("-"),
-          // _OutlineButTon("1"),
-          // _OutlineButTon("2"),
-          // _OutlineButTon("3"),
-          // _OutlineButTon("x"),
-          // _OutlineButTon("C"),
-          // _OutlineButTon("0"),
-          // _OutlineButTon("="),
-          // _OutlineButTon("/")
+
           children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 20, 20, 20),
+              alignment: Alignment.topRight,
+              child: Text(textToDisplay,
+                  textAlign: TextAlign.left,
+                  style: GoogleFonts.rubik(
+                      textStyle: TextStyle(color: Colors.white, fontSize: 36))),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+              alignment: Alignment.topRight,
+              child: Text(history,
+                  style: GoogleFonts.rubik(
+                      textStyle: TextStyle(color: Colors.grey, fontSize: 18))),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 50, 30, 30),
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 2.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                            onPressed: () {
+                              clickbtnTime = !clickbtnTime;
+                              if (clickbtnTime == true) {
+                                Text(history);
+                              } else {
+                                return btnOnClick(textToDisplay);
+                              }
+                              setState(() {});
+                            },
+                            icon: Icon(clickbtnTime
+                                ? Icons.access_time
+                                : Icons.calculate),
+                            color: Colors.grey.shade700),
+                      )
+                    ],
+                  )),
+              alignment: Alignment(1.0, 1.0),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 1, color: Colors.grey.shade800))),
+            ),
             Container(
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _OutlineButTon("7", Colors.grey.shade800, textcolor),
+                _OutlineButTon("C", Colors.red.shade600, textcolor),
+                _OutlineButTon("( )", Colors.grey.shade800,
+                    textcolor = Colors.lightGreen.shade400),
+                _OutlineButTon("%", Colors.grey.shade800, textcolor),
+                _OutlineButTon(":", Colors.grey.shade800,
+                    textcolor = Colors.lightGreen.shade400),
+              ],
+            )),
+            Container(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _OutlineButTon(
+                    "7", Colors.grey.shade800, textcolor = Colors.white),
                 _OutlineButTon("8", Colors.grey.shade800, textcolor),
                 _OutlineButTon("9", Colors.grey.shade800, textcolor),
                 _OutlineButTon("x", Colors.grey.shade800,
-                    textcolor = Colors.green.shade400),
+                    textcolor = Colors.lightGreen.shade400),
               ],
             )),
             Container(
@@ -106,7 +216,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 _OutlineButTon("5", Colors.grey.shade800, textcolor),
                 _OutlineButTon("6", Colors.grey.shade800, textcolor),
                 _OutlineButTon("-", Colors.grey.shade800,
-                    textcolor = Colors.green.shade400),
+                    textcolor = Colors.lightGreen.shade400),
+              ],
+            )),
+            Container(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _OutlineButTon(
+                    "1", Colors.grey.shade800, textcolor = Colors.white),
+                _OutlineButTon("2", Colors.grey.shade800, textcolor),
+                _OutlineButTon("3", Colors.grey.shade800, textcolor),
+                _OutlineButTon("+", Colors.grey.shade800,
+                    textcolor = Colors.lightGreen.shade400),
               ],
             )),
             Container(
@@ -117,7 +239,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "+/-", Colors.grey.shade800, textcolor = Colors.white),
                 _OutlineButTon("0", Colors.grey.shade800, textcolor),
                 _OutlineButTon(",", Colors.grey.shade800, textcolor),
-                _OutlineButTon("=", Colors.green.shade800, textcolor),
+                _OutlineButTon("=", Colors.lightGreen.shade400, textcolor),
               ],
             )),
           ],
