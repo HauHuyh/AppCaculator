@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20.0, vertical: 2.0),
-                  child: Column(
+                  child: Row(
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
@@ -177,6 +177,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             icon: Icon(clickbtnTime
                                 ? Icons.access_time
                                 : Icons.calculate),
+                            color: Colors.grey.shade700),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.calculate),
                             color: Colors.grey.shade700),
                       )
                     ],
