@@ -183,9 +183,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.centerLeft,
                         child: IconButton(
                             onPressed: () {},
+                            icon: Icon(Icons.horizontal_rule),
+                            color: Colors.grey.shade700),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                            onPressed: () {},
                             icon: Icon(Icons.calculate),
                             color: Colors.grey.shade700),
-                      )
+                      ),
                     ],
                   )),
               alignment: Alignment(1.0, 1.0),
