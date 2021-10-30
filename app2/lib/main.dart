@@ -88,6 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget btnTime() {
+    return Container(
+      child: Text(history),
+    );
+  }
+
   Widget _OutlineButTon(
     text,
     Color color,
@@ -164,8 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               clickbtnTime = !clickbtnTime;
                               if (clickbtnTime == true) {
-                              } else {
-                                return btnOnClick(textToDisplay);
+                                btnTime();
                               }
                               setState(() {});
                             },
