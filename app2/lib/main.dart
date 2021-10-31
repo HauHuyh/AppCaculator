@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.cyan,
       ),
       home: const MyHomePage(title: 'Máy Tính 2.0'),
     );
@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage('images/app1.png'),
-            fit:BoxFit.cover,
+            fit: BoxFit.cover,
           )),
           child: Center(
             child: Column(
@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(history,
                       style: GoogleFonts.rubik(
                           textStyle:
-                              TextStyle(color: Colors.grey, fontSize: 18))),
+                              TextStyle(color: Colors.white70, fontSize: 18))),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 50, 30, 30),
@@ -191,9 +191,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 2.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            alignment: Alignment.centerLeft,
+                            // alignment: Alignment.centerLeft,
                             child: IconButton(
                                 onPressed: () {
                                   clickbtnTime = !clickbtnTime;
@@ -208,22 +209,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.grey.shade700),
                           ),
                           Container(
-                            alignment: Alignment.centerLeft,
+                            // alignment: Alignment.centerLeft,
                             child: IconButton(
                                 onPressed: () {},
                                 icon: Icon(Icons.horizontal_rule),
                                 color: Colors.grey.shade700),
                           ),
                           Container(
-                            alignment: Alignment.centerLeft,
+                            // alignment: Alignment.centerLeft,
                             child: IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.calculate),
+                                icon: Icon(Icons.calculate_sharp),
                                 color: Colors.grey.shade700),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(250, 00, 00, 00),
-                            alignment: Alignment.bottomRight,
+                            // alignment: Alignment.centerRight,
                             child: IconButton(
                                 onPressed: () {
                                   clickbtnDelete = !clickbtnDelete;
@@ -240,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       )),
-                  alignment: Alignment(1.0, 1.0),
+                  // alignment: Alignment(1.0, 1.0),
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
