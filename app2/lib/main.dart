@@ -159,7 +159,8 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('images/app2.jpg'),
+            image: AssetImage('images/app1.png'),
+            fit:BoxFit.cover,
           )),
           child: Center(
             child: Column(
